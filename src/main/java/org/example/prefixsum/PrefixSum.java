@@ -20,6 +20,23 @@ public class PrefixSum {
     }
 
     /**
+     * Given an array of integers nums, you start with an initial positive value startValue.
+     * In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left to right).
+     * Return the minimum positive value of startValue such that the step by step sum is never less than 1.
+     */
+    public int minStartValue(int[] nums) {
+        int sum = 0;
+        int minValue = 1;
+
+        for (int num : nums) {
+            sum += num;
+            minValue = Math.max(minValue, -sum + 1);
+        }
+
+        return minValue;
+    }
+
+    /**
      * Given an integer array nums, an array queries where queries[i] = [x, y] and an integer limit, return a boolean
      * array that represents the answer to each query. A query is true if the sum of the subarray from x to y is less
      * than limit, or false otherwise.

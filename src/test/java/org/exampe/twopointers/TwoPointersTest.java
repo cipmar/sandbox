@@ -54,8 +54,8 @@ public class TwoPointersTest {
     @Test
     public void testCaseCombine() {
 
-        int[] a = new int[]{1, 3, 5};
-        int[] b = new int[]{2, 4, 5, 6, 8, 9};
+        int[] a = {1, 3, 5};
+        int[] b = {2, 4, 5, 6, 8, 9};
 
         int[] result = twoPointers.combineSortedArrays(a, b);
 
@@ -75,7 +75,7 @@ public class TwoPointersTest {
     @Test
     public void testCaseSortedSquares() {
 
-        int[] nums = new int[]{-4, -1, 0, 3, 10};
+        int[] nums = {-4, -1, 0, 3, 10};
         int[] result = twoPointers.sortedSquares(nums);
         assertArrayEquals(new int[]{0, 1, 9, 16, 100}, result);
     }
@@ -83,7 +83,7 @@ public class TwoPointersTest {
     @Test
     public void testCaseSortedSquares2() {
 
-        int[] nums = new int[]{-3, -2, -1};
+        int[] nums = {-3, -2, -1};
         int[] result = twoPointers.sortedSquares(nums);
         assertArrayEquals(new int[]{1, 4, 9}, result);
     }
