@@ -2,21 +2,23 @@ package org.example.interviews;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.signum;
 import static java.util.stream.Collectors.toList;
 
 public class Interview1 {
 
-    public static int multiply(int a, int b) {
+    public int multiply(int a, int b) {
 
         int result = 0;
-        for (int i = 0; i < Math.abs(a); i++) {
-            result += b;
+        for (int i = 0; i < abs(a); i++) {
+            result += abs(b);
         }
 
-        return result * (int) Math.signum(a) * (int) Math.signum(b);
+        return result * (int) signum(a) * (int) signum(b);
     }
 
-    public static int multiplyRec(int a, int b) {
+    public int multiplyRecInternal(int a, int b) {
 
         if (a == 0) {
             return 0;
@@ -25,7 +27,12 @@ public class Interview1 {
         return b + multiplyRec(a - 1, b);
     }
 
-    public static List<Integer> findTopKFrequent(int[] array, int k) {
+    public int multiplyRec(int a, int b) {
+
+        return multiplyRecInternal(abs(a), abs(b)) * (int) signum(a) * (int) signum(b);
+    }
+
+    public List<Integer> findTopKFrequent(int[] array, int k) {
 
         Map<Integer, Integer> map = new HashMap<>();
         for (var e : array) {
@@ -43,7 +50,7 @@ public class Interview1 {
                 .collect(toList());
     }
 
-    public static int[] findTopFrequentUsingMinHeap(int[] array, int k) {
+    public int[] findTopFrequentUsingMinHeap(int[] array, int k) {
 
         Map<Integer, Integer> map = new HashMap<>();
         for (var e : array) {
