@@ -2,8 +2,10 @@ package org.example.heaps;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 public class KLargest {
 
@@ -15,6 +17,24 @@ public class KLargest {
         PriorityQueue<Integer> heap = new PriorityQueue<>();
 
         for (var n : nums) {
+            heap.add(n);
+            if (heap.size() > k) {
+                heap.remove();
+            }
+        }
+
+        return heap.peek();
+    }
+
+    int findKSmallestDistinctInArray(int[] nums, int k) {
+        Set<Integer> set = new HashSet<>();
+        for (var n : nums) {
+            set.add(n);
+        }
+
+        PriorityQueue<Integer> heap = new PriorityQueue<>(Comparator.reverseOrder());
+
+        for (var n : set) {
             heap.add(n);
             if (heap.size() > k) {
                 heap.remove();
