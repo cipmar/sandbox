@@ -11,10 +11,16 @@ package org.example.slidingwindow;
 public class BallsInBucket {
 
     int solution(String buckets) {
+        System.out.println(buckets);
         char[] array = buckets.toCharArray();
 
         // count the balls
-        int balls = ballsInWindow(array, 0, array.length - 1, 1);
+        int balls = 0;
+        for (char c : array) {
+            if (c == 'B') {
+                balls++;
+            }
+        }
 
         // we need no of balls + balls - 1 of empty spaces for the solution
         // we check each window of size 2 * balls - 1 on how many balls are in correct place
@@ -28,9 +34,8 @@ public class BallsInBucket {
         }
 
         // to avoid counting the no of balls in the current window all the time, we calculate the no of balls in
-        // the first windows and update the number as we progress through the array
-        int correctBallsInWindow = ballsInWindow(array, 0, window - 1, 2);
-        int totalBallsInWindow = ballsInWindow(array, 0, window - 1, 1);
+        int correctBallsInWindow = -1;
+        int totalBallsInWindow = -1;
 
         int left = 0;
         int right = left + window - 1;
@@ -38,17 +43,24 @@ public class BallsInBucket {
 
         while (right < array.length) {
 
-            int moves = balls - correctBallsInWindow;
-            if (moves < min) {
-                min = moves;
-            }
+            if (correctBallsInWindow == -1) {
+                // first window, so we calculate correctBallsInWindow and totalBallsInWindow
 
-            left++;
-            right++;
+                correctBallsInWindow = 0;
+                totalBallsInWindow = 0;
 
-            if (right < array.length) {
+                for (int i = left; i <= right; i++) {
+                    if (array[i] == 'B') {
+                        totalBallsInWindow++;
 
-                // calculate new correctBallsInWindow and totalBallsInWindow
+                        if (i % 2 == 0) {
+                            correctBallsInWindow++;
+                        }
+                    }
+                }
+            } else {
+                // calculate correctBallsInWindow and totalBallsInWindow base on previous window
+
                 // what were incorrect in the previous widows are correct in the new window
                 correctBallsInWindow = totalBallsInWindow - correctBallsInWindow;
 
@@ -63,20 +75,16 @@ public class BallsInBucket {
                     totalBallsInWindow--;
                 }
             }
+
+            int moves = balls - correctBallsInWindow;
+            if (moves < min) {
+                min = moves;
+            }
+
+            left++;
+            right++;
         }
 
         return min;
-    }
-
-    private int ballsInWindow(char[] array, int left, int right, int step) {
-        int n = 0;
-
-        for (int i = left; i <= right; i = i + step) {
-            if (array[i] == 'B') {
-                n++;
-            }
-        }
-
-        return n;
     }
 }
