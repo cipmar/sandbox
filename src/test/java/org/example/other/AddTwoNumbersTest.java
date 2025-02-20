@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.stream.Stream;
 
-import org.example.other.AddTwoNumbers.ListNode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,7 +13,7 @@ class AddTwoNumbersTest {
 
     @ParameterizedTest
     @MethodSource("testCases")
-    public void addTwoNumbers(ListNode n1, ListNode n2, ListNode expected) {
+    public void addTwoNumbers(ListNode n1, ListNode n2, org.example.other.ListNode expected) {
 
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
 
@@ -30,7 +29,7 @@ class AddTwoNumbersTest {
         );
     }
 
-    private boolean equal(ListNode l1, ListNode l2) {
+    private boolean equal(org.example.other.ListNode l1, ListNode l2) {
         while (l1 != null && l2 != null) {
             if (l1.val != l2.val) {
                 return false;

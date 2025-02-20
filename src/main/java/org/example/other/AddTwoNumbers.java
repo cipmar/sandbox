@@ -4,7 +4,7 @@ import java.util.StringJoiner;
 
 public class AddTwoNumbers {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
         ListNode result = null;
         ListNode l = null;
@@ -45,7 +45,7 @@ public class AddTwoNumbers {
         System.out.println(stringJoiner);
     }
 
-    public static ListNode toListNode(int[] array) {
+    static ListNode toListNode(int[] array) {
 
         ListNode l = null;
         ListNode result = null;
@@ -74,20 +74,4 @@ public class AddTwoNumbers {
         printList(result);
     }
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }
