@@ -9,23 +9,24 @@ public class AddTwoNumbers {
         ListNode result = null;
         ListNode l = null;
 
-        int x = 0;
+        int carry = 0;
 
-        while (l1 != null || l2 != null || x > 0) {
+        while (l1 != null || l2 != null || carry > 0) {
 
             int a = l1 != null ? l1.val : 0;
             int b = l2 != null ? l2.val : 0;
-            int val = a + b + x;
-            x = val / 10;
+            int val = a + b + carry;
+            carry = val / 10;
             val = val % 10;
 
-            ListNode crt = new ListNode(val, null);
+            ListNode newNode = new ListNode(val, null);
+
             if (l == null) {
-                l = crt;
+                l = newNode;
                 result = l;
             } else {
-                l.next = crt;
-                l = crt;
+                l.next = newNode;
+                l = newNode;
             }
 
             l1 = l1 != null ? l1.next : null;
