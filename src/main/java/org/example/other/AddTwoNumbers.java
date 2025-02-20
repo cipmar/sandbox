@@ -20,12 +20,12 @@ public class AddTwoNumbers {
             ListNode newNode = new ListNode(val, null);
 
             if (l == null) {
-                l = newNode;
-                result = l;
+                result = newNode ;
             } else {
                 l.next = newNode;
-                l = newNode;
             }
+
+            l = newNode;
 
             l1 = l1 != null ? l1.next : null;
             l2 = l2 != null ? l2.next : null;
