@@ -1,7 +1,5 @@
 package org.example.other;
 
-import java.util.StringJoiner;
-
 public class AddTwoNumbers {
 
     ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -36,16 +34,6 @@ public class AddTwoNumbers {
         return result;
     }
 
-    private static void printList(ListNode listNode) {
-        StringJoiner stringJoiner = new StringJoiner(",");
-
-        while (listNode != null) {
-            stringJoiner.add(String.valueOf(listNode.val));
-            listNode = listNode.next;
-        }
-        System.out.println(stringJoiner);
-    }
-
     static ListNode toListNode(int[] array) {
 
         ListNode l = null;
@@ -64,15 +52,4 @@ public class AddTwoNumbers {
 
         return result;
     }
-
-    public static void main(String[] args) {
-        AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
-
-        ListNode l1 = toListNode(new int[]{4, 2, 3, 2, 1});
-        ListNode l2 = toListNode(new int[]{6, 2, 3, 2, 1, 1, 2, 3});
-        ListNode result = addTwoNumbers.addTwoNumbers(l1, l2);
-
-        printList(result);
-    }
-
 }
