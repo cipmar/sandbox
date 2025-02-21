@@ -1,16 +1,39 @@
 package org.exampe.slidingwindow;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.stream.Stream;
+
 import org.example.slidingwindow.SlidingWindow;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class SlidingWindowTest {
 
     private SlidingWindow slidingWindow = new SlidingWindow();
 
+    @ParameterizedTest
+    @MethodSource("testCasesLengthOfLongestSubstring")
+    public void testLengthOfLongestSubstring(String s, int expected) {
+
+        int actual = slidingWindow.lengthOfLongestSubstring(s);
+
+        assertEquals(expected, actual);
+    }
+
+    public static Stream<Arguments> testCasesLengthOfLongestSubstring() {
+        return Stream.of(
+                Arguments.of("abcabcbb", 3),
+                Arguments.of("bbbbb", 1),
+                Arguments.of("pwwkew", 3),
+                Arguments.of("tmmzuxt", 5)
+        );
+    }
+
     @Test
-    public void testCase1() {
+    public void testFindLengthLongestArrayWithSumLessOrEqualToK() {
 
         // arrange
         int[] nums = {3, 1, 2, 7, 4, 2, 1, 1, 5};
@@ -23,7 +46,7 @@ public class SlidingWindowTest {
     }
 
     @Test
-    public void testCase2() {
+    public void testFindLengthLongestArrayWithSumLessOrEqualToK2() {
 
         // arrange
         int[] nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};

@@ -1,9 +1,45 @@
 package org.example.slidingwindow;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SlidingWindow {
 
     public static void main(String[] args) {
 
+    }
+
+    /**
+     * 3. Longest Substring Without Repeating Characters
+     * Given a string s, find the length of the longest substring without duplicate characters.
+     */
+    public int lengthOfLongestSubstring(String s) {
+
+        Set<Character> set = new HashSet<>();
+
+        int left = 0;
+        int max = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+
+            char c = s.charAt(right);
+            boolean duplicate = !set.add(c);
+
+            if (duplicate) {
+                // remove from left until we find a char equals to c
+                while (s.charAt(left) != c) {
+                    set.remove(s.charAt(left++));
+                }
+                left++;
+            } else {
+                // we have a solution, check if it's longer than previous solution
+                if (right - left + 1 > max) {
+                    max = right - left + 1;
+                }
+            }
+        }
+
+        return max;
     }
 
     /**
